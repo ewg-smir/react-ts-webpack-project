@@ -1,0 +1,10 @@
+# Зависимости
+/node_modules
+/dist
+# Логи
+npm-debug.log
+yarn-error.log
+
+# IDE
+.vscode
+.idea
