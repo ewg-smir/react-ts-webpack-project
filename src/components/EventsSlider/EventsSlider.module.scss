@@ -1,0 +1,85 @@
+.sliderWrapper {
+  margin-top: 40px;
+  padding: 0 50px;
+  position: relative;
+  z-index: 2;
+}
+.swiperContainer {
+  height: 200px;
+  padding-bottom: 40px;
+}
+
+.slide {
+  padding: 20px;
+}
+
+.eventCard {
+  border-top: 2px solid #ddd;
+  padding-top: 15px;
+}
+
+.eventDate {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.eventDescription {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  color: #007bff;
+}
+:global(.swiper-pagination-bullet-active) {
+  background: #007bff;
+}
+
+@media (max-width: 768px) {
+  .sliderWrapper {
+    padding: 0 10px;
+    margin-top: 20px;
+  }
+
+  .swiperContainer {
+    height: 180px;
+    padding-bottom: 50px;
+  }
+
+  :global(.swiper-wrapper) {
+    .swiper-slide {
+      width: 100% !important;
+    }
+  }
+
+  .eventCard {
+    padding: 15px;
+  }
+
+  .eventDate {
+    font-size: 1rem;
+  }
+
+  .eventDescription {
+    font-size: 0.85rem;
+  }
+
+  .sliderControls {
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    width: 40px;
+    height: 40px;
+    &:after {
+      font-size: 1rem;
+    }
+  }
+}

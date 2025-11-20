@@ -1,0 +1,187 @@
+@use 'sass:math';
+
+$circle-size: 500px;
+$radius: math.div($circle-size, 2);
+$min-horizontal-padding: 30px;
+$line-thickness: 1px;
+$line-color: #ddd;
+$dot-size: 15px;
+$dot-active-size: 20px;
+$arrow-size: 56px;
+$arrow-size-mobile: 40px;
+
+.circleContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: $circle-size;
+  height: $circle-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  @media (max-width: 768px) {
+    width: auto;
+    height: auto;
+    top: auto;
+    right: auto;
+    left: 20px;
+    bottom: 20px;
+    transform: none;
+    position: fixed;
+  }
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  border: $line-thickness dashed $line-color;
+  border-radius: 50%;
+  position: relative;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: $radius;
+  height: 0;
+  transform-origin: 0 0;
+  cursor: pointer;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $dot-size;
+  height: $dot-size;
+  background-color: #007bff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    background-color 0.3s,
+    transform 0.3s,
+    width 0.3s,
+    height 0.3s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.numberWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.segmentNumber {
+  position: relative;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.point:not(.active) .numberWrapper {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.point:not(.active):hover .numberWrapper {
+  opacity: 1;
+}
+
+.point.active {
+  .dot {
+    background-color: #ff007f;
+    width: $dot-active-size;
+    height: $dot-active-size;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .numberWrapper {
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+}
+
+.controlsWrapper {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+  @media (max-width: 768px) {
+    position: static;
+    transform: none;
+    width: auto;
+
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 0;
+  }
+}
+
+.segmentCounter {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 5px;
+  text-align: center;
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.navigationArrows {
+  display: flex;
+  gap: 16px;
+}
+
+.arrowButton {
+  width: $arrow-size;
+  height: $arrow-size;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+  padding: 0;
+  user-select: none;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+  @media (max-width: 768px) {
+    width: $arrow-size-mobile;
+    height: $arrow-size-mobile;
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    border-color: #007bff;
+    color: #007bff;
+  }
+
+  &:active {
+    background-color: #f0f0f0;
+  }
+}
